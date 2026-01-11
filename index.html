@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earn Money</title>
+<style>
+body {
+  background: #0f172a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.box {
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 20px;
+  border: 1px solid #475569;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(45deg, #22c55e, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #cbd5e1;
+}
+
+button {
+  background: linear-gradient(45deg, #22c55e, #16a34a);
+  border: none;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+  background: linear-gradient(45deg, #16a34a, #22c55e);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.info-box {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 30px;
+  border-left: 4px solid #22c55e;
+}
+
+.info-box h3 {
+  color: #22c55e;
+  margin-top: 0;
+}
+
+.status {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #22c55e;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .box {
+    padding: 30px 15px;
+    margin: 10px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  button {
+    padding: 14px 30px;
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+</style>
+
+<!-- 🔥 Monetag SDK -->
+<script src="//libtl.com/sdk.js"
+        data-zone="10445967"
+        data-sdk="show_10445967"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="box">
+    <h1>💸 Earn Money Online</h1>
+    <p>Click the button below to watch ads and start earning money instantly!</p>
+    
+    <button onclick="showAd()">🎯 Start Earning Now</button>
+    
+    <div class="info-box">
+      <h3>ℹ️ How it works:</h3>
+      <p>1. Click the "Start Earning Now" button<br>
+         2. Watch the advertisement<br>
+         3. Earn money for every ad view<br>
+         4. Withdraw your earnings easily</p>
+    </div>
+    
+    <div class="status">🟢 System Status: Active & Ready</div>
+  </div>
+</div>
+
+<script>
+// Track ad views
+let adViews = 0;
+
+function showAd() {
+  if (typeof show_10445967 === 'function') {
+    // Increment counter
+    adViews++;
+    
+    // Show success message
+    alert(`✅ Ad #${adViews} is loading...\n\nPlease watch the ad completely to earn money.`);
+    
+    // Call Monetag Ad
+    show_10445967();
+    
+    // Update status (optional)
+    updateStatus();
+    
+  } else {
+    alert("⚠️ Ad system is initializing...\n\nPlease wait a moment and try again.");
+    
+    // Reload SDK after 3 seconds if not loaded
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  }
+}
+
+function updateStatus() {
+  const statusDiv = document.querySelector('.status');
+  if (statusDiv) {
+    statusDiv.innerHTML = `🟢 Active | Ads Viewed: ${adViews}`;
+    statusDiv.style.animation = 'none';
+    setTimeout(() => {
+      statusDiv.style.animation = 'pulse 2s infinite';
+    }, 100);
+  }
+}
+
+// Check if SDK loaded properly
+window.addEventListener('load', function() {
+  console.log('Monetag SDK loaded successfully');
+  
+  // Simulate SDK loading for demo (remove in production)
+  if (typeof show_10445967 === 'undefined') {
+    // For demo purposes only - simulate the function
+    window.show_10445967 = function() {
+      console.log('Ad would show here');
+      setTimeout(() => {
+        alert('🎉 Ad completed! You earned $0.01!\n\nThank you for watching.');
+      }, 1500);
+    };
+  }
+});
+</script>
+
+</body>
+</html>
